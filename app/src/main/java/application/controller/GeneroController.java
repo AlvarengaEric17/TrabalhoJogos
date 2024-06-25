@@ -8,35 +8,29 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import application.model.Genero;
 import application.repository.GeneroRepository;
-
 @Controller
 @RequestMapping("/generos")
 public class GeneroController {
     @Autowired
     private GeneroRepository generoRepo;
-
     @RequestMapping("/insert")
     public String insert() {
         return "generos/insert";
     }
-
     @RequestMapping(value = "insert", method = RequestMethod.POST)
     public String insert(@RequestParam("nome") String nome) {
         Genero genero = new Genero();
         genero.setNome(nome);
         
         generoRepo.save(genero);
-
         return "redirect:/generos/list";
     }
-
     @RequestMapping("/list")
     public String list(Model ui) {
         ui.addAttribute("generos", generoRepo.findAll());
-        
+
         return "/generos/list";
     }
 
@@ -47,12 +41,13 @@ public class GeneroController {
             ui.addAttribute("genero", result.get());
             return "/generos/update";
         }
-        
+
         return "redirect:/generos/list";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(@RequestParam("id") long id, @RequestParam("nome") String nome) {
+    public String update(@RequestParam("id") long id,
+     @RequestParam("nome") String nome) {
         Optional<Genero> result = generoRepo.findById(id);
         if(result.isPresent()) {
             result.get().setNome(nome);
@@ -69,14 +64,13 @@ public class GeneroController {
             ui.addAttribute("genero", result.get());
             return "/generos/delete";
         }
-        
+
         return "redirect:/generos/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("id") long id) {
         generoRepo.deleteById(id);
-
         return "redirect:/generos/list";
     }
 }

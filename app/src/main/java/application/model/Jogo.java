@@ -17,6 +17,8 @@ public class Jogo {
     private long id;
     @Column(nullable = false)
     private String titulo;
+    @Column(nullable = false)
+    private String multiplayer;
 
     @ManyToOne
     @JoinColumn(name = "id_genero", nullable = false)
@@ -45,4 +47,13 @@ public class Jogo {
     public void setGenero(Genero genero) {
         this.genero = genero;
     }
+
+    public String getMultiplayer() {
+        return multiplayer;
+    }
+
+    public void setMultiplayer(String multiplayer) {
+        this.multiplayer = multiplayer;
+    }
+    
 }

@@ -22,7 +22,7 @@ public class Genero {
     @OneToMany(mappedBy = "genero")
     private Set<Jogo> jogos;
 
-    
+
     public long getId() {
         return id;
     }
@@ -39,8 +39,8 @@ public class Genero {
     public Set<Jogo> getJogos() {
         return jogos;
     }
-    
+
     public void setJogos(Set<Jogo> jogos) {
         this.jogos = jogos;
-    }
+    } 
 }
