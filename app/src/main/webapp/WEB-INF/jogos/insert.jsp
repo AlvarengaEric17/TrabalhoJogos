@@ -26,10 +26,7 @@
                 </div>
                 <div>
                     <label class="form-label">Multiplayer:</label>
-                    <select name="multiplayer" class="form-select" >
-                        <option value="Sim">Sim</option>
-                        <option value="Não">Não</option>
-                    </select>
+                    <input type="text" name="multiplayer" class="form-control"/>
                 </div>
 
                 <br />
